@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+
+body {
+    width: 90%;
+    margin-left: 5%;
+    font-family: 'Kufam', cursive;
+}
+
+#modal {
+    display: none;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
+}
+
+#modal-textbox {
+    background-color: white;
+    height: 280px;
+    width: 550px;
+    border-radius: 2px;
+    margin: 150px auto;
+    /*This will set the margins for the top and the bottom to 150px (or larger). The right and left will automatically set themselves (and keep the box centered horizontally).*/
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    /*This will give the box some depth.*/
+    padding: 2%;
+    line-height: 120%;
+}
+
+#modal-footer {
+    text-align: right;
+}
+
+.modal-buttons {
+    background-color: lightgray;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.game-area {
+    display: flex;
+    justify-content: space-around;
+    border-style: solid;
+    width: 100%;
+    /* display: none; */
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn-div {
+    text-align: center;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.lvl-btn {
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: lightblue;
+    font-size: 20px;
+}
+
+.game-stats {
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+}
+
+.stats {
+    margin: 30px;
+    width: 100%;
+}
+
+/**********************************
+* CARDS
+***********************************/
+.card {
+    flex-basis: 8em;
+    height: 12em;
+    border: 1px solid orange;
+    background: #fbfbfb;
+    box-shadow: 2px 2px 4px grey;
+    display: grid;
+    border-radius: 10%;
+    grid-template-columns: 0.5em 1.5em 4em 1.5em 0.5em;
+    grid-template-rows: 3em 5em 3em;
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+    grid-template-areas:
+        '. . . top .'
+        '. . center . .'
+        '. bottom . . .';
+}
+
+.top {
+    grid-area: top;
+}
+
+.center {
+    grid-area: center;
+}
+
+.bottom {
+    grid-area: bottom;
+}
+.card h5 {
+    font-size: 5em;
+    margin: 0;
+    margin-top: -0.3em;
+}
+
+.card span {
+    color: hotpink;
+    font-size: 2em;
+}
+
+.card-back span {
+    color: rgba(0, 0, 0, 0);
+}
+
+.card-back {
+    /* adapted from: https://leaverou.github.io/css3patterns/#zig-zag */
+    background: linear-gradient(135deg, #fbfbfb 25%, transparent 25%) -50px 0,
+        linear-gradient(225deg, #fbfbfb 25%, transparent 25%) -50px 0,
+        linear-gradient(315deg, #fbfbfb 25%, transparent 25%),
+        linear-gradient(45deg, #fbfbfb 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-color: mediumseagreen;
+    color: rgba(0, 0, 0, 0);
+}
