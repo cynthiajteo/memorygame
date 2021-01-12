@@ -1,12 +1,15 @@
 /////// DECLARE VARIABLES ///////
 // store images for playing cards/tiles
-let imagesArr = [];
+let imagesArr = [1, 1, 2, 2, 3, 3];
 
 // store pair images url for playing cards/tiles
 // let pairImagesArr = [];
 
 // array to store opened cards
 let handOfCards = [];
+
+// array to store matched cards
+let matchedCardsArr = [];
 
 // default image for closed card
 let defaultImage =
@@ -23,10 +26,6 @@ let comboCount = 0;
 let matchComboTwo = 2;
 let matchComboThree = 3;
 let matchComboMoreThanThree = 4;
-
-// cards setup based on levels
-// let numOfCards = [6, 12, 20];
-// let numOfImages = [3, 6, 10];
 
 // game mode number of cards setup - need to link this to button & function
 let easyModeCards = 6;
@@ -56,7 +55,7 @@ const startTime = () => {
         $('#timer').html('Time: ' + countTime);
         countTime--;
 
-        if (countTime === 0) {
+        if (countTime <= 0) {
             clearInterval(currentTime);
             timesUp();
         }
@@ -66,6 +65,7 @@ const startTime = () => {
 // initialize time's up
 const timesUp = () => {
     alert(`Time's up, you lose!`);
+    window.location.reload();
 };
 
 // initialize scoring & combos
@@ -110,7 +110,16 @@ function shuffle(array) {
     return array;
 }
 
-// click card
+// check win function
+const checkWinEasy = () => {
+    if ($('.unmatched').length === 0) {
+        clearInterval(currentTime);
+        console.log('win!');
+        alert(`Congrats ${playerName}, you win!`);
+    }
+};
+
+// click card - need to change, this is from lab
 const clickCard = (card) => {
     handOfCards.push(card);
     console.log('adding to', handOfCards);
@@ -207,7 +216,7 @@ $(() => {
     const generateDivsForEasy = () => {
         let id = 0;
         $('.game-area').empty();
-        for (let k = 0; k < 6; k++) {
+        for (let k = 0; k < easyModeCards; k++) {
             const $divCards = $('<img />')
                 .addClass('default-card')
                 .attr('id', id++)
@@ -219,7 +228,7 @@ $(() => {
     const generateDivsForMed = () => {
         let id = 0;
         $('.game-area').empty();
-        for (let k = 0; k < 12; k++) {
+        for (let k = 0; k < mediumModeCards; k++) {
             const $divCards = $('<img />')
                 .addClass('default-card')
                 .attr('id', id++)
@@ -231,7 +240,7 @@ $(() => {
     const generateDivsForHard = () => {
         let id = 0;
         $('.game-area').empty();
-        for (let k = 0; k < 20; k++) {
+        for (let k = 0; k < hardModeCards; k++) {
             const $divCards = $('<img />')
                 .addClass('default-card')
                 .attr('id', id++)
@@ -241,11 +250,47 @@ $(() => {
     };
     // linked level buttons to number of cards - will need to change, should start game instead
     $easyBtn = $('#easy-btn');
-    $easyBtn.on('click', generateDivsForEasy);
     $medBtn = $('#medium-btn');
-    $medBtn.on('click', generateDivsForMed);
     $hardBtn = $('#hard-btn');
-    $hardBtn.on('click', generateDivsForHard);
+
+    // start EASY game
+    const startEasyGame = () => {
+        generateDivsForEasy();
+        startTime();
+        // need to shuffle array function
+        // click card function
+        // check match function - will have unmmatched situation inside
+        // check win function - if
+        // check lose function
+        // restart function
+    };
+    $easyBtn.on('click', startEasyGame);
+
+    // start MEDIUM game
+    const startMedGame = () => {
+        generateDivsForMed();
+        startTime();
+        // need to shuffle array function
+        // click card function
+        // check match function - will have unmmatched situation inside
+        // check win function
+        // check lose function
+        // restart function
+    };
+    $medBtn.on('click', startMedGame);
+
+    // start HARD game
+    const startHardGame = () => {
+        generateDivsForHard();
+        startTime();
+        // need to shuffle array function
+        // click card function
+        // check match function - will have unmmatched situation inside
+        // check win function
+        // check lose function
+        // restart function
+    };
+    $hardBtn.on('click', startHardGame);
 
     $('.default-card').on('click', (clickCard) => {
         //console.log(event);
