@@ -96,8 +96,8 @@ $(() => {
         assignCards() {
             $('.card').each(function (index) {
                 // assign value to card
-                // $(this).attr('data-card-value', app.cards[index]);
-                $(this).attr('src', imageArr[index]);
+                $(this).attr('data-card-value', app.cards[index]);
+                //$(this).attr('src', imageArr[index]);
             });
             app.clickHandlers();
         },
@@ -174,7 +174,7 @@ $(() => {
         for (let i = 0; i < 10; i++) {
             imageUrlArr.push(data[i].image);
             // pushed all the image urls into array
-            console.log(imageUrlArr);
+            // console.log(imageUrlArr);
         }
 
         // to append images - need to figure how to use this for assignCards()
@@ -185,7 +185,7 @@ $(() => {
                 alt: data.name,
             });
             $('.container').append(myImg);
-            console.log(myImg);
+            // console.log(myImg);
         }
     });
 });

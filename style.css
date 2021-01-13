@@ -37,10 +37,20 @@ h1 {
 .card {
     float: left;
     margin: 10px;
-    height: 200px;
-    width: 150px;
-    background: lightblue;
+    height: 300px;
+    width: 300px;
+    /* background-image: light blue; */
+    background-image: url('https://cdn.dribbble.com/users/2432796/screenshots/5955359/_________234-1_cr_4x.png?compress=1&resize=1600x1200');
     text-align: center;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px #ccc;
+}
+
+.card > img {
+    float: left;
+    margin: 10px;
+    height: 300px;
+    width: 300px;
     border-radius: 5px;
     box-shadow: 10px 10px 10px #ccc;
 }
