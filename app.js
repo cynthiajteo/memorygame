@@ -33,23 +33,32 @@ $(() => {
         startEasyGame() {
             app.playerName();
             app.generateDivs(6);
+            app.displayStats();
         },
 
         startMediumGame() {
             app.playerName();
             app.generateDivs(12);
+            app.displayStats();
         },
 
         startHardGame() {
             app.playerName();
             app.generateDivs(20);
+            app.displayStats();
+        },
+
+        displayStats() {
+            $('#hp').html('HP: ' + app.startHP);
+            $('#score').html('Score: ' + app.startScore);
+            $('#combo').html('Match Combo: ' + app.startCombo);
         },
 
         // get player's name
         playerName() {
             player = prompt('Please type your name', 'Player');
             if (player === null) player = 'Player';
-            $('#player-name').html('Player : ' + player);
+            $('#player-name').html('Player: ' + player);
         },
 
         generateDivs(numOfCards) {
