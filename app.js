@@ -1,4 +1,5 @@
-console.log($);
+let imageUrlArr = [];
+
 $(() => {
     // modals
     // Grabbing Elements
@@ -30,6 +31,7 @@ $(() => {
         startHP: 100,
         startGame() {
             app.playerName();
+            app.generateDivs();
         },
 
         // get player's name
@@ -37,6 +39,14 @@ $(() => {
             player = prompt('Please type your name', 'Player');
             if (player === null) player = 'Player';
             $('#player-name').html('Player : ' + player);
+            // app.shuffle();
+        },
+
+        generateDivs() {
+            for (let i = 0; i < this.cards.length; i++) {
+                let $cardUnmatched = $('<div>').addClass('card unmatched');
+                $('.container').append($cardUnmatched);
+            }
             app.shuffle();
         },
 
@@ -62,8 +72,10 @@ $(() => {
                 this.startScore + this.defaultScore;
             } else if (this.startCombo === 2) {
                 this.startScore += this.defaultScore * 2;
+                this.startHP += 5;
             } else if (this.startCombo > 2) {
                 this.startScore += this.defaultScore * 3;
+                this.startHP += 5;
             }
         },
 
@@ -80,20 +92,12 @@ $(() => {
             }
         },
 
-        // startTime() {
-        //     let timer = 0;
-        //     const currentTime = setInterval(() => {
-        //         //console.log(timer);
-        //         $('#timer').html('Time: ' + timer);
-        //         timer++;
-        //     }, 1000);
-        // },
-
         // assign cards to divs
         assignCards() {
             $('.card').each(function (index) {
                 // assign value to card
-                $(this).attr('data-card-value', app.cards[index]);
+                // $(this).attr('data-card-value', app.cards[index]);
+                $(this).attr('src', imageArr[index]);
             });
             app.clickHandlers();
         },
@@ -155,4 +159,33 @@ $(() => {
     };
     $easyBtn = $('#easy-btn');
     $easyBtn.on('click', app.startGame);
+
+    const id = '1,2,3,4,5,6,7,8,9,10';
+    const promiseData = $.ajax({
+        url: 'https://rickandmortyapi.com/api/character/' + id,
+        type: 'GET',
+        data: {
+            //   $limit: 10,
+        },
+    });
+
+    promiseData.then((data) => {
+        // const urls = [];
+        for (let i = 0; i < 10; i++) {
+            imageUrlArr.push(data[i].image);
+            // pushed all the image urls into array
+            console.log(imageUrlArr);
+        }
+
+        // to append images - need to figure how to use this for assignCards()
+        for (let i = 0; i < imageUrlArr.length; i++) {
+            const myImg = $('<img />', {
+                id: `image-${i + 1}`,
+                src: data[i].image,
+                alt: data.name,
+            });
+            $('.container').append(myImg);
+            console.log(myImg);
+        }
+    });
 });
