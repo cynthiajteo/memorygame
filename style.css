@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap');
+
+html {
+    display: flex;
+}
+
+body {
+    width: 90%;
+    margin-left: 5%;
+    font-family: 'Kufam', cursive;
+    background-image: url('https://wallpapercave.com/wp/wp2450670.png');
+    background-size: cover;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Syne Tactile', cursive;
+}
+
+.container {
+    width: 1080px;
+    height: 1080px;
+    margin: 0 auto;
+    display: block;
+    justify-content: space-around;
+    border-style: solid;
+    /* width: 100%;
+    height: 100%; */
+}
+
+.card {
+    float: left;
+    margin: 10px;
+    height: 200px;
+    width: 150px;
+    background: lightblue;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px #ccc;
+}
+
+.card:hover {
+    cursor: pointer;
+    border: 3px solid blue;
+}
+
+.card p {
+    font-size: 48px;
+    color: blue;
+}
+
+.game-stats {
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+    font-family: 'Syne Tactile', cursive;
+    font-size: 20px;
+}
+
+.stats {
+    margin: 30px;
+    width: 100%;
+}
+
+/* level buttons */
+.btn-div {
+    text-align: center;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.lvl-btn:hover {
+    color: blue;
+}
+
+.lvl-btn {
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: lightblue;
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: 'Syne Tactile', cursive;
+}
+
+/* modal */
+#modal {
+    display: none;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
+    color: black;
+}
+
+#modal-textbox {
+    background-color: white;
+    height: 300px;
+    width: 550px;
+    border-radius: 2px;
+    margin: 150px auto;
+    /*This will set the margins for the top and the bottom to 150px (or larger). The right and left will automatically set themselves (and keep the box centered horizontally).*/
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    /*This will give the box some depth.*/
+    padding: 2%;
+    line-height: 120%;
+}
+
+#modal-footer {
+    text-align: right;
+}
+
+.modal-buttons {
+    background-color: lightgray;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+}

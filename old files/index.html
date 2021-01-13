@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Memory Game</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            charset="utf-8"
+        ></script>
+        <script src="app1.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Memory Game</h1>
+            <button class="modal-buttons" id="openModal">About</button>
+            <div id="modal">
+                <div id="modal-textbox">
+                    <h1>Welcome!</h1>
+                    <p>
+                        This is a game to test your memory! All you have to do
+                        is open one card at a time and remember the image and
+                        match it with another card that has the exact image.
+                    </p>
+                    <p>
+                        There are 3 levels of difficulty for you to choose from:
+                        Easy, Medium, Hard.
+                    </p>
+                    <p>
+                        Easy: 6 cards with 3 pairs of different images <br />
+                        Medium: 12 cards with 6 pairs of different images <br />
+                        Hard: 20 cards with 10 pairs of different images
+                    </p>
+                    <p>GOOD LUCK AND HAVE FUN!</p>
+
+                    <div id="modal-footer">
+                        <button class="modal-buttons" id="close" href="#">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="btn-div">
+            <button class="lvl-btn" id="easy-btn">Easy</button>
+            <button class="lvl-btn" id="medium-btn">Medium</button>
+            <button class="lvl-btn" id="hard-btn">Hard</button>
+        </div>
+
+        <div class="game-stats">
+            <h2 class="stats" id="player-name">Player Name:</h2>
+            <h2 class="stats" id="combo">Match Combo:</h2>
+            <h2 class="stats" id="score">Score:</h2>
+            <h2 class="stats" id="timer">Timer:</h2>
+        </div>
+
+        <div class="game-area">
+            <!-- <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div>
+            <div class="card unmmatched"></div> -->
+
+            <!-- <div class="card card-back">
+                <span class="top">&hearts;</span>
+                <h5 class="center">Q</h5>
+                <span class="bottom">&hearts;</span>
+            </div>
+            <div class="card card-back">
+                <span class="top">&hearts;</span>
+                <h5 class="center">K</h5>
+                <span class="bottom">&hearts;</span>
+            </div>
+            <div class="card card-back">
+                <span class="top">&hearts;</span>
+                <h5 class="center">K</h5>
+                <span class="bottom">&hearts;</span>
+            </div>
+            <div class="card-back card">
+                <span class="top">&hearts;</span>
+                <h5 class="center">Q</h5>
+                <span class="bottom">&hearts;</span> -->
+            </div>
+        </div>
+    </body>
+</html>
