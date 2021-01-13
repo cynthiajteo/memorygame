@@ -24,14 +24,25 @@ $(() => {
 
     const app = {
         player: this.playerName,
-        cards: [0, 0, 1, 1, 2, 2, 3, 3],
+        cards: [1, 1, 2, 2, 3, 3],
         startScore: 0,
-        defaultScore: 10,
+        addScore: 10,
         startCombo: 0,
         startHP: 100,
-        startGame() {
+
+        startEasyGame() {
             app.playerName();
-            app.generateDivs();
+            app.generateDivs(6);
+        },
+
+        startMediumGame() {
+            app.playerName();
+            app.generateDivs(12);
+        },
+
+        startHardGame() {
+            app.playerName();
+            app.generateDivs(20);
         },
 
         // get player's name
@@ -39,11 +50,10 @@ $(() => {
             player = prompt('Please type your name', 'Player');
             if (player === null) player = 'Player';
             $('#player-name').html('Player : ' + player);
-            // app.shuffle();
         },
 
-        generateDivs() {
-            for (let i = 0; i < this.cards.length; i++) {
+        generateDivs(numOfCards) {
+            for (let i = 0; i < numOfCards; i++) {
                 let $cardUnmatched = $('<div>').addClass('card unmatched');
                 $('.container').append($cardUnmatched);
             }
@@ -69,13 +79,21 @@ $(() => {
         // score multiplier based on combo
         increaseScore() {
             if (this.startCombo < 2) {
-                this.startScore + this.defaultScore;
+                this.startScore = this.startScore + this.addScore;
+                $('#score').html('Score: ' + this.startScore);
+                // console.log(this.startScore);
             } else if (this.startCombo === 2) {
-                this.startScore += this.defaultScore * 2;
+                this.startScore += this.addScore * 2;
                 this.startHP += 5;
+                $('#score').html('Score: ' + this.startScore);
+                $('#hp').html('HP: ' + this.startHP);
+                // console.log(this.startScore);
             } else if (this.startCombo > 2) {
-                this.startScore += this.defaultScore * 3;
+                this.startScore += this.addScore * 3;
                 this.startHP += 5;
+                $('#score').html('Score: ' + this.startScore);
+                $('#hp').html('HP: ' + this.startHP);
+                // console.log(this.startScore);
             }
         },
 
@@ -157,8 +175,16 @@ $(() => {
             }
         },
     };
+
+    // start easy game
     $easyBtn = $('#easy-btn');
-    $easyBtn.on('click', app.startGame);
+    $easyBtn.on('click', app.startEasyGame);
+    // start medium game
+    $mediumBtn = $('#medium-btn');
+    $mediumBtn.on('click', app.startMediumGame);
+    // start hard game
+    $hardBtn = $('#hard-btn');
+    $hardBtn.on('click', app.startHardGame);
 
     const id = '1,2,3,4,5,6,7,8,9,10';
     const promiseData = $.ajax({
@@ -184,7 +210,7 @@ $(() => {
                 src: data[i].image,
                 alt: data.name,
             });
-            $('.container').append(myImg);
+            $('.test').append(myImg);
             // console.log(myImg);
         }
     });
