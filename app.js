@@ -27,7 +27,7 @@ $(() => {
         startScore: 0,
         defaultScore: 10,
         startCombo: 0,
-        startTime: 0,
+        startHP: 100,
         startGame() {
             app.playerName();
         },
@@ -38,7 +38,6 @@ $(() => {
             if (player === null) player = 'Player';
             $('#player-name').html('Player : ' + player);
             app.shuffle();
-            // app.startTime();
         },
 
         // shuffles cards
@@ -53,7 +52,7 @@ $(() => {
                 app.cards[random] = temp;
             }
             app.assignCards();
-            app.startTime();
+            // app.startTime();
             console.log('shuffled cards: ' + app.cards);
         },
 
@@ -73,14 +72,22 @@ $(() => {
             this.startCombo = 0;
         },
 
-        startTime() {
-            let timer = 0;
-            const currentTime = setInterval(() => {
-                //console.log(timer);
-                $('#timer').html('Time: ' + timer);
-                timer++;
-            }, 1000);
+        minusHP() {
+            if (this.startHP > 0) {
+                this.startHP -= 10;
+            } else if (this.startHP === 0) {
+                alert('You lose!');
+            }
         },
+
+        // startTime() {
+        //     let timer = 0;
+        //     const currentTime = setInterval(() => {
+        //         //console.log(timer);
+        //         $('#timer').html('Time: ' + timer);
+        //         timer++;
+        //     }, 1000);
+        // },
 
         // assign cards to divs
         assignCards() {
@@ -133,6 +140,8 @@ $(() => {
                     }, 800);
                     this.resetCombo();
                     $('#combo').html('Match Combo: ' + this.startCombo);
+                    this.minusHP();
+                    $('#hp').html('HP: ' + this.startHP);
                 }
             }
         },
