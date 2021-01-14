@@ -167,14 +167,14 @@ $(() => {
                         console.log(`it's a match`);
                         firstUrl = '';
                         setTimeout(function () {
-                            $(e.target).css('display', 'none');
-                            $(e.target).parent().css('display', 'none');
+                            $(e.target).css('opacity', 0);
+                            $(e.target).parent().css('opacity', 0);
                             $('.selected')
                                 .css('display', 'none')
                                 .removeClass('selected')
                                 .toggleClass('card-back')
                                 .parent()
-                                .css('display', 'none');
+                                .css('opacity', 0);
                         }, 1000);
 
                         this.startCombo++;
@@ -189,7 +189,7 @@ $(() => {
                                 .addClass('card-unmatched')
                                 .removeClass('selected')
                                 .css('opacity', 0);
-                        }, 1000);
+                        }, 2000);
 
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
