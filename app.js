@@ -1,6 +1,4 @@
 $(() => {
-    let imageUrlArr = [];
-
     // modals
     // Grabbing Elements
     const $openBtn = $('#openModal');
@@ -32,8 +30,9 @@ $(() => {
 
         startEasyGame() {
             app.playerName();
-            app.generateDivs(6);
+            //app.generateDivs(6);
             app.displayStats();
+            app.assignImgs();
         },
 
         startMediumGame() {
@@ -61,13 +60,13 @@ $(() => {
             $('#player-name').html('Player: ' + player);
         },
 
-        generateDivs(numOfCards) {
-            for (let i = 0; i < numOfCards; i++) {
-                let $cardUnmatched = $('<div>').addClass('card unmatched');
-                $('.container').append($cardUnmatched);
-            }
-            this.assignImgs();
-        },
+        // generateDivs(numOfCards) {
+        //     for (let i = 0; i < numOfCards; i++) {
+        //         let $cardUnmatched = $('<div>').addClass('card unmatched');
+        //         $('.container').append($cardUnmatched);
+        //     }
+        //     this.assignImgs();
+        // },
 
         // shuffles cards
         shuffle(array) {
@@ -113,15 +112,6 @@ $(() => {
             }
         },
 
-        // assign values to cards
-        // assignCards() {
-        //     $('.card').each(function (index) {
-        //         // assign value to card
-        //         $(this).attr('data-card-value', app.cards[index]);
-        //     });
-        //     app.clickHandlers();
-        // },
-
         // shuffle and assign images
         assignImgs() {
             let id = '1,2,3,4,5,6,7,8,9,10';
@@ -133,64 +123,48 @@ $(() => {
                 },
             });
             promiseData.then((data) => {
+                let imageUrlArr = [];
                 for (let j = 0; j < 10; j++) {
                     imageUrlArr.push(data[j].image);
                     imageUrlArr.push(data[j].image);
                 }
                 let shuffledArray = this.shuffle(imageUrlArr);
                 console.log(shuffledArray);
-
                 for (let k = 0; k < shuffledArray.length; k++) {
-                    const myImg = $('<img />', {
-                        id: `image-${k + 1}`,
-                        src: shuffledArray[k],
-                    });
-
-                    // append images to div using .each (NEED HELP)
-                    // $('.card unmatched').each(function () {
-                    //     $(this).append(myImg);
-                    // });
-
-                    //myImg.addClass('unmatched img');
-                    $('.container').append(myImg);
-                    this.match();
+                    $('.container').append(
+                        $('<img>', {
+                            id: `image-${k + 1}`,
+                            src: shuffledArray[k],
+                        }).addClass('card-unmatched'),
+                    );
                 }
+                this.match();
             });
         },
-
-        // clickHandlers() {
-        //     $('.card').on('click', function () {
-        //         $(this)
-        //             // .html('<p>' + $(this).data('cardValue') + '</p>')
-        //             .addClass('selected')
-        //             .css('display', 'block');
-
-        //         app.checkMatch();
-        //     });
-        // },
 
         // check match - need to test after appending image to divs
         match() {
             let firstUrl;
-            let clickCount = 0;
-
-            $('.card').on('click', (e) => {
-                clickCount++;
+            //let clickCount = 0;
+            $('.card-unmatched').on('click', (e) => {
+                //clickCount++;
                 $(e.target).removeClass('card-unmatched');
-                $(e.target).addClass('first');
-                if (clickCount === 1) {
+                $(e.target).addClass('selected');
+                console.log(e.target.src);
+                if ($('.selected').length === 1) {
                     firstUrl = e.target.src;
                     console.log('first url is: ', firstUrl);
                 }
-                if (clickCount === 2) {
+                if ($('.selected').length === 2) {
                     console.log('second url is: ', e.target.src);
                     if (e.target.src === firstUrl) {
                         console.log(`it's a match`);
-                        $('.first').removeClass('.first');
                         firstUrl = '';
-                        $(e.target).css('opacity', 0);
-                        $('.first').css('opacity', 0);
-                        clickCount = 0;
+                        $(e.target).css('display', 'none');
+                        $('.selected')
+                            .css('display', 'none')
+                            .removeClass('selected');
+                        //clickCount = 0;
 
                         this.startCombo++;
                         this.increaseScore();
@@ -199,10 +173,10 @@ $(() => {
                         this.checkWin();
                     } else {
                         $(e.target).addClass('card-unmatched');
-                        $('.first')
+                        $('.selected')
                             .addClass('card-unmatched')
-                            .removeClass('.first');
-                        clickCount = 0;
+                            .removeClass('selected');
+                        //clickCount = 0;
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
                         this.minusHP();
@@ -252,7 +226,7 @@ $(() => {
         // },
 
         checkWin() {
-            if ($('.unmatched').length === 0) {
+            if ($('.card-unmatched').length === 0) {
                 // apend you won text
                 $('.container').html(`<h1>${player}, You Won!<h1>`);
             }
