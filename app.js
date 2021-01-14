@@ -4,6 +4,7 @@ $(() => {
     const $openBtn = $('#openModal');
     const $modal = $('#modal');
     const $closeBtn = $('#close');
+    const $hintBtn = $('#hint');
 
     // Event Handlers
     const openModal = () => {
@@ -104,11 +105,15 @@ $(() => {
             }
         },
 
-        // show all images
+        // display all images for 2 seconds
         showAll() {
-            if (this.startHP > 0) {
-                this.startHP -= 10;
-            }
+            $('.card-unmatched').css('opacity', 1);
+            setTimeout(function () {
+                $('.card-unmatched').css('opacity', 0);
+            }, 2000);
+            app.startHP -= 5;
+            $('#hp').html('HP: ' + app.startHP);
+            console.log(app.startHP);
         },
 
         // shuffle and assign images
@@ -175,8 +180,7 @@ $(() => {
 
                         this.startCombo++;
                         this.increaseScore();
-                        $('#score').html('Score: ' + this.startScore);
-                        $('#combo').html('Match Combo: ' + this.startCombo);
+                        this.displayStats();
                         this.checkWin();
                     } else {
                         setTimeout(function () {
@@ -185,13 +189,12 @@ $(() => {
                                 .addClass('card-unmatched')
                                 .removeClass('selected')
                                 .css('opacity', 0);
-                        }, 2000);
+                        }, 1500);
 
                         this.checkLose();
                         this.resetCombo();
-                        $('#combo').html('Match Combo: ' + this.startCombo);
                         this.minusHP();
-                        $('#hp').html('HP: ' + this.startHP);
+                        this.displayStats();
                     }
                 }
             });
@@ -212,9 +215,13 @@ $(() => {
         },
     };
 
+    // show all button
+    $hintBtn.on('click', app.showAll);
+
     // start easy game
     $easyBtn = $('#easy-btn');
     $easyBtn.on('click', app.startEasyGame);
+
     // start medium game
     $mediumBtn = $('#medium-btn');
     $mediumBtn.on('click', app.startMediumGame);
