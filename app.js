@@ -1,6 +1,4 @@
 $(() => {
-    let defaultImg =
-        'https://cdn.dribbble.com/users/2432796/screenshots/5955359/_________234-1_cr_4x.png?compress=1&resize=1600x1200';
     // modals
     // Grabbing Elements
     const $openBtn = $('#openModal');
@@ -32,21 +30,20 @@ $(() => {
 
         startEasyGame() {
             app.playerName();
-            //app.generateDivs(6);
             app.displayStats();
             app.assignImgs();
         },
 
         startMediumGame() {
             app.playerName();
-            app.generateDivs(12);
             app.displayStats();
+            app.assignImgs();
         },
 
         startHardGame() {
             app.playerName();
-            app.generateDivs(20);
             app.displayStats();
+            app.assignImgs();
         },
 
         displayStats() {
@@ -62,14 +59,6 @@ $(() => {
             $('#player-name').html('Player: ' + player);
         },
 
-        // generateDivs(numOfCards) {
-        //     for (let i = 0; i < numOfCards; i++) {
-        //         let $cardUnmatched = $('<div>').addClass('card unmatched');
-        //         $('.container').append($cardUnmatched);
-        //     }
-        //     this.assignImgs();
-        // },
-
         // shuffles cards
         shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -79,13 +68,6 @@ $(() => {
 
             return array;
         },
-
-        // flip cards to show default image
-        // flipCards() {
-        //     setTimeout(() => {
-        //         $('.card-unmatched').addClass('card-back');
-        //     }, 2000);
-        // },
 
         // score multiplier based on combo
         increaseScore() {
@@ -112,6 +94,7 @@ $(() => {
         resetCombo() {
             this.startCombo = 0;
         },
+
         // minus HP when don't match
         minusHP() {
             if (this.startHP > 0) {
@@ -149,14 +132,13 @@ $(() => {
                         }).addClass('card-unmatched'),
                     );
                 }
-                // this.flipCards();
 
-                this.match();
+                this.checkMatch();
             });
         },
 
         // check match - need to test after appending image to divs
-        match() {
+        checkMatch() {
             let firstUrl;
             $('.card-unmatched').on('click', (e) => {
                 console.log($(e.target));
@@ -197,11 +179,6 @@ $(() => {
                                 .removeClass('selected')
                                 .css('opacity', 0);
                         }, 1000);
-                        // $(e.target).addClass('card-unmatched');
-                        // $('.selected')
-                        //     .addClass('card-unmatched')
-                        //     .removeClass('selected');
-                        // need to flip cards back so settime out
 
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
@@ -211,45 +188,6 @@ $(() => {
                 }
             });
         },
-
-        // checkMatch() {
-        //     if ($('.selected').length === 2) {
-        //         if (
-        //             $('.selected').first().data('cardValue') ==
-        //             $('.selected').last().data('cardValue')
-        //         ) {
-        //             // make the cards invisible
-        //             $('.selected').each(function () {
-        //                 $(this)
-        //                     .animate({ opacity: 0 })
-        //                     .removeClass('unmatched');
-        //             });
-
-        //             this.startCombo++;
-        //             this.increaseScore();
-        //             $('#score').html('Score: ' + this.startScore);
-        //             $('#combo').html('Match Combo: ' + this.startCombo);
-
-        //             // removes selected class
-        //             $('.selected').each(function () {
-        //                 $(this).removeClass('selected');
-        //             });
-        //             // check for win after every match
-        //             this.checkWin();
-        //         } else {
-        //             // flip cards over
-        //             setTimeout(function () {
-        //                 $('.selected').each(function () {
-        //                     $(this).html('').removeClass('selected');
-        //                 });
-        //             }, 800);
-        //             this.resetCombo();
-        //             $('#combo').html('Match Combo: ' + this.startCombo);
-        //             this.minusHP();
-        //             $('#hp').html('HP: ' + this.startHP);
-        //         }
-        //     }
-        // },
 
         checkWin() {
             if ($('.card-unmatched').length === 0) {
