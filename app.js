@@ -79,7 +79,7 @@ $(() => {
                 // console.log(this.startScore);
             } else if (this.startCombo === 2) {
                 this.startScore += this.addScore * 2;
-                this.startHP += 5;
+                this.startHP += 10;
                 $('#score').html('Score: ' + this.startScore);
                 $('#hp').html('HP: ' + this.startHP);
                 // console.log(this.startScore);
@@ -100,9 +100,7 @@ $(() => {
         // minus HP when don't match
         minusHP() {
             if (this.startHP > 0) {
-                this.startHP -= 10;
-            } else if (this.startHP === 0) {
-                alert('You lose!');
+                this.startHP -= 5;
             }
         },
 
@@ -110,8 +108,6 @@ $(() => {
         showAll() {
             if (this.startHP > 0) {
                 this.startHP -= 10;
-            } else if (this.startHP === 0) {
-                alert('You lose!');
             }
         },
 
@@ -191,6 +187,7 @@ $(() => {
                                 .css('opacity', 0);
                         }, 2000);
 
+                        this.checkLose();
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
                         this.minusHP();
@@ -204,6 +201,13 @@ $(() => {
             if ($('.card-unmatched').length === 0) {
                 // apend you won text
                 $('.container').html(`<h1>${player}, You Won!<h1>`);
+            }
+        },
+
+        checkLose() {
+            if (this.startHP === 0) {
+                alert('You lose!');
+                $('.container').empty();
             }
         },
     };
