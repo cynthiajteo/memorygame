@@ -1,4 +1,6 @@
 $(() => {
+    let defaultImg =
+        'https://cdn.dribbble.com/users/2432796/screenshots/5955359/_________234-1_cr_4x.png?compress=1&resize=1600x1200';
     // modals
     // Grabbing Elements
     const $openBtn = $('#openModal');
@@ -78,6 +80,13 @@ $(() => {
             return array;
         },
 
+        // flip cards to show default image
+        flipCards() {
+            setTimeout(() => {
+                $('.card-unmatched').addClass('card-back');
+            }, 2000);
+        },
+
         // score multiplier based on combo
         increaseScore() {
             if (this.startCombo < 2) {
@@ -131,13 +140,17 @@ $(() => {
                 let shuffledArray = this.shuffle(imageUrlArr);
                 console.log(shuffledArray);
                 for (let k = 0; k < shuffledArray.length; k++) {
-                    $('.container').append(
+                    let $div = $('<div>');
+                    $('.container').append($div);
+                    $div.append(
                         $('<img>', {
                             id: `image-${k + 1}`,
                             src: shuffledArray[k],
                         }).addClass('card-unmatched'),
                     );
                 }
+                this.flipCards();
+
                 this.match();
             });
         },
@@ -145,9 +158,9 @@ $(() => {
         // check match - need to test after appending image to divs
         match() {
             let firstUrl;
-            //let clickCount = 0;
             $('.card-unmatched').on('click', (e) => {
-                //clickCount++;
+                console.log($(e.target));
+                $(e.target).toggleClass('card-back');
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
                 console.log(e.target.src);
@@ -164,7 +177,6 @@ $(() => {
                         $('.selected')
                             .css('display', 'none')
                             .removeClass('selected');
-                        //clickCount = 0;
 
                         this.startCombo++;
                         this.increaseScore();
@@ -176,7 +188,7 @@ $(() => {
                         $('.selected')
                             .addClass('card-unmatched')
                             .removeClass('selected');
-                        //clickCount = 0;
+
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
                         this.minusHP();

@@ -14,10 +14,6 @@ body {
     color: white;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 h1 {
     text-align: center;
     font-family: 'Syne Tactile', cursive;
@@ -34,25 +30,16 @@ h1 {
     height: 100%;
 }
 
-/* .card {
-    float: left;
-    margin: 10px;
-    height: 200px;
-    width: 150px;
+.card-back {
     background-image: url('https://cdn.dribbble.com/users/2432796/screenshots/5955359/_________234-1_cr_4x.png?compress=1&resize=1600x1200');
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 10px 10px 10px #ccc;
-} */
+    /* background-size: 100px 100px;
+    background-color: mediumseagreen;
+    color: rgba(0, 0, 0, 0); */
+}
 
-/* .card > img {
-    float: left;
-    margin: 10px;
-    height: 300px;
-    width: 300px;
-    border-radius: 5px;
-    box-shadow: 10px 10px 10px #ccc;
-} */
+.card-back > img {
+    opacity: 0;
+}
 
 .container > img {
     /* display: none; */
@@ -62,12 +49,11 @@ h1 {
     width: 150px;
     border-radius: 5px;
     box-shadow: 10px 10px 10px #ccc;
-    /* object-fit: contain; */
 }
 
 .container > img {
     cursor: pointer;
-    border: 3px solid blue;
+    border: black;
 }
 
 .game-stats {
