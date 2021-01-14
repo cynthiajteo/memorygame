@@ -113,7 +113,7 @@ $(() => {
             }, 2000);
             app.startHP -= 5;
             $('#hp').html('HP: ' + app.startHP);
-            console.log(app.startHP);
+            // console.log(app.startHP);
         },
 
         // shuffle and assign images
@@ -133,7 +133,7 @@ $(() => {
                     imageUrlArr.push(data[j].image);
                 }
                 let shuffledArray = this.shuffle(imageUrlArr);
-                console.log(shuffledArray);
+                // console.log(shuffledArray);
                 for (let k = 0; k < shuffledArray.length; k++) {
                     let $div = $('<div>').addClass('card-back');
                     $('.container').append($div);
@@ -152,21 +152,28 @@ $(() => {
         // check match - need to test after appending image to divs
         checkMatch() {
             let firstUrl;
+            let clickCount = 0;
+
             $('.card-unmatched').on('click', (e) => {
-                console.log($(e.target));
+                clickCount++;
+                // console.log($(e.target));
                 $(e.target).css('opacity', 1);
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
                 console.log(e.target.src);
                 if ($('.selected').length === 1) {
                     firstUrl = e.target.src;
-                    console.log('first url is: ', firstUrl);
+                    // console.log('first url is: ', firstUrl);
                 }
                 if ($('.selected').length === 2) {
-                    console.log('second url is: ', e.target.src);
+                    // console.log('second url is: ', e.target.src);
+                    $('.card-unmatched').unbind('click');
+                    $('.selected').unbind('click');
                     if (e.target.src === firstUrl) {
-                        console.log(`it's a match`);
+                        // console.log(`it's a match`);
                         firstUrl = '';
+                        clickCounted = 0;
+
                         setTimeout(function () {
                             $(e.target).css('opacity', 0);
                             $(e.target).parent().css('opacity', 0);
@@ -176,7 +183,10 @@ $(() => {
                                 .toggleClass('card-back')
                                 .parent()
                                 .css('opacity', 0);
-                        }, 1000);
+                        }, 800);
+                        // if (clickCount === 0) {
+                        //     $('.card-back').bind('click', click);
+                        // }
 
                         this.startCombo++;
                         this.increaseScore();
@@ -190,6 +200,12 @@ $(() => {
                                 .removeClass('selected')
                                 .css('opacity', 0);
                         }, 1500);
+                        clickCounted = 0;
+                        if (clickCount === 0) {
+                            $('.card-unmatched').bind('click', function () {
+                                console.log('binded');
+                            });
+                        }
 
                         this.checkLose();
                         this.resetCombo();
