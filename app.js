@@ -81,11 +81,11 @@ $(() => {
         },
 
         // flip cards to show default image
-        flipCards() {
-            setTimeout(() => {
-                $('.card-unmatched').addClass('card-back');
-            }, 2000);
-        },
+        // flipCards() {
+        //     setTimeout(() => {
+        //         $('.card-unmatched').addClass('card-back');
+        //     }, 2000);
+        // },
 
         // score multiplier based on combo
         increaseScore() {
@@ -140,7 +140,7 @@ $(() => {
                 let shuffledArray = this.shuffle(imageUrlArr);
                 console.log(shuffledArray);
                 for (let k = 0; k < shuffledArray.length; k++) {
-                    let $div = $('<div>');
+                    let $div = $('<div>').addClass('card-back');
                     $('.container').append($div);
                     $div.append(
                         $('<img>', {
@@ -149,7 +149,7 @@ $(() => {
                         }).addClass('card-unmatched'),
                     );
                 }
-                this.flipCards();
+                // this.flipCards();
 
                 this.match();
             });
@@ -160,7 +160,7 @@ $(() => {
             let firstUrl;
             $('.card-unmatched').on('click', (e) => {
                 console.log($(e.target));
-                $(e.target).toggleClass('card-back');
+                $(e.target).css('opacity', 1);
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
                 console.log(e.target.src);
@@ -173,10 +173,16 @@ $(() => {
                     if (e.target.src === firstUrl) {
                         console.log(`it's a match`);
                         firstUrl = '';
-                        $(e.target).css('display', 'none');
-                        $('.selected')
-                            .css('display', 'none')
-                            .removeClass('selected');
+                        setTimeout(function () {
+                            $(e.target).css('display', 'none');
+                            $(e.target).parent().css('display', 'none');
+                            $('.selected')
+                                .css('display', 'none')
+                                .removeClass('selected')
+                                .toggleClass('card-back')
+                                .parent()
+                                .css('display', 'none');
+                        }, 1000);
 
                         this.startCombo++;
                         this.increaseScore();
@@ -184,10 +190,18 @@ $(() => {
                         $('#combo').html('Match Combo: ' + this.startCombo);
                         this.checkWin();
                     } else {
-                        $(e.target).addClass('card-unmatched');
-                        $('.selected')
-                            .addClass('card-unmatched')
-                            .removeClass('selected');
+                        setTimeout(function () {
+                            $(e.target).addClass('card-unmatched');
+                            $('.selected')
+                                .addClass('card-unmatched')
+                                .removeClass('selected')
+                                .css('opacity', 0);
+                        }, 1000);
+                        // $(e.target).addClass('card-unmatched');
+                        // $('.selected')
+                        //     .addClass('card-unmatched')
+                        //     .removeClass('selected');
+                        // need to flip cards back so settime out
 
                         this.resetCombo();
                         $('#combo').html('Match Combo: ' + this.startCombo);
