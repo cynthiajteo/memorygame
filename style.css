@@ -3,7 +3,6 @@
 
 html {
     display: flex;
-    background-image: url('https://wallpapercave.com/wp/wp2450670.png');
 }
 
 body {
@@ -11,6 +10,7 @@ body {
     margin-left: 5%;
     font-family: 'Kufam', cursive;
     /* background-image: url('https://wallpapercave.com/wp/wp2450670.png'); */
+    background-color: rgba(2, 2, 53, 0.945);
     color: white;
 }
 
@@ -26,9 +26,11 @@ h1 {
     width: 850px;
     height: 880px;
 }
+
 header {
     height: 40px;
 }
+
 .card-back {
     background-image: url('https://p.favim.com/orig/2018/09/06/wallpaper-morty-rick-and-morty-Favim.com-6236802.jpg');
     float: left;
@@ -86,6 +88,13 @@ header {
     font-family: 'Syne Tactile', cursive;
 }
 
+/* hint button */
+.hint {
+    background-color: lightgray;
+    width: 100px;
+    border-radius: 10px;
+}
+
 /* modal */
 #modal {
     display: none;
@@ -102,7 +111,7 @@ header {
 
 #modal-textbox {
     background-color: white;
-    height: 00px;
+    height: 300px;
     width: 550px;
     border-radius: 2px;
     margin: 150px auto;

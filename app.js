@@ -22,25 +22,27 @@ $(() => {
 
     const app = {
         player: this.playerName,
-        //cards: [1, 1, 2, 2, 3, 3],
         startScore: 0,
         addScore: 10,
         startCombo: 0,
         startHP: 100,
 
         startEasyGame() {
+            $('.container').empty();
             app.playerName();
             app.displayStats();
             app.assignImgs();
         },
 
         startMediumGame() {
+            $('.container').empty();
             app.playerName();
             app.displayStats();
             app.assignImgs();
         },
 
         startHardGame() {
+            $('.container').empty();
             app.playerName();
             app.displayStats();
             app.assignImgs();
@@ -97,6 +99,15 @@ $(() => {
 
         // minus HP when don't match
         minusHP() {
+            if (this.startHP > 0) {
+                this.startHP -= 10;
+            } else if (this.startHP === 0) {
+                alert('You lose!');
+            }
+        },
+
+        // show all images
+        showAll() {
             if (this.startHP > 0) {
                 this.startHP -= 10;
             } else if (this.startHP === 0) {
