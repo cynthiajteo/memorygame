@@ -3,6 +3,11 @@
 ## About the game:
 This is a game to test your memory! All you have to do is open one card at a time and remember the image and match it with another card that has the exact image. Watch out for your HP, make sure you don't reach 0.
 
+There are 3 levels:
+* Easy: 10 cards with 5 pairs of images
+* Medium: 16 cards with 8 pairs of images
+* Hard: 24 cards with 12 pairs of images
+
 You will start with:
 * HP: 100
 * Combo: 0
