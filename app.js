@@ -9,7 +9,6 @@ $(() => {
     const $modal = $('#modal');
     const $closeBtn = $('#close');
     const $hintBtn = $('#hint');
-    const $loseModal = $('#loseModal');
 
     const openModal = () => {
         $modal.css('display', 'block');
@@ -17,10 +16,6 @@ $(() => {
 
     const closeModal = () => {
         $modal.css('display', 'none');
-    };
-
-    const loseModal = () => {
-        $loseModal.css('display', 'block');
     };
 
     $openBtn.on('click', openModal);
