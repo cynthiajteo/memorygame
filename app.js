@@ -156,7 +156,8 @@ $(() => {
                         }).addClass('card-unmatched'),
                     );
                 }
-                this.firstShow();
+                // this.firstShow();
+
                 this.checkMatch();
             });
         },
@@ -165,10 +166,9 @@ $(() => {
         checkMatch() {
             let firstUrl;
             let clickCount = 0;
-
             $('.card-unmatched').on('click', (e) => {
                 clickCount++;
-                // console.log($(e.target));
+                console.log(clickCount);
                 $(e.target).css('opacity', 1);
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
@@ -178,13 +178,13 @@ $(() => {
                     // console.log('first url is: ', firstUrl);
                 }
                 if ($('.selected').length === 2) {
+                    clickCount = 0;
                     // console.log('second url is: ', e.target.src);
                     // $('.card-unmatched').unbind('click');
                     // $('.selected').unbind('click');
                     if (e.target.src === firstUrl) {
                         // console.log(`it's a match`);
                         firstUrl = '';
-                        clickCounted = 0;
 
                         setTimeout(function () {
                             $(e.target).css('opacity', 0);
@@ -195,10 +195,7 @@ $(() => {
                                 .toggleClass('card-back')
                                 .parent()
                                 .css('opacity', 0);
-                        }, 800);
-                        // if (clickCount === 0) {
-                        //     $('.card-back').bind('click', click);
-                        // }
+                        }, 1000);
 
                         this.startCombo++;
                         this.increaseScore();
@@ -211,13 +208,8 @@ $(() => {
                                 .addClass('card-unmatched')
                                 .removeClass('selected')
                                 .css('opacity', 0);
-                        }, 1500);
-                        clickCounted = 0;
-                        if (clickCount === 0) {
-                            $('.card-unmatched').bind('click', function () {
-                                console.log('binded');
-                            });
-                        }
+                        }, 1000);
+                        clickCount = 0;
 
                         this.checkLose();
                         this.resetCombo();
