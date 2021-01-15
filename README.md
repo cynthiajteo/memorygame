@@ -41,7 +41,6 @@ Created the game using object and build by adding:
 * Score and combo functions
 * Used HP to check of lose situation
 
-
 ## Difficulties Faced:
 * Not doing enough planning before starting the actual code
 * Mostly game logic lacked planning
@@ -49,9 +48,11 @@ Created the game using object and build by adding:
 
 ## Known Issues:
 * Users are able to open more than 2 images if they click fast enough
+* Hint will minus 10 HP if user starts another level
 
 ## Further Improvements:
 * Fix opening more than 2 images
+* Fix hint function
 * Add animation for flipping cards
 * Adding and storing high score board
 * Adding timer for users to beat their personal best
