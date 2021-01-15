@@ -59,19 +59,19 @@ This game was created by using object and built on by adding:
 
 ## Screenshots:
 * Welcome Page
-![Welcome Page](img/Welcome Modal.png)
+![Welcome Page](img/welcome.png)
 
 * Scoring System
-![Scoring System](img/Scoring System Modal.png)
+![Scoring System](img/scoring.png)
 
 * Main Page with levels to choose
-![Main Page](img/Main Page.png)
+![Main Page](img/main.png)
 
 * Easy Mode
-![Easy Mode](img/Easy Mode.png)
+![Easy Mode](img/easy.png)
 
 * Hint - show all images
-![Hint](img/Hint - show all images.png)
+![Hint](img/hint.png)
 
 
 ## Further Improvements:
