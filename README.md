@@ -42,9 +42,11 @@ Used to generate images for playing cards
 * Ajax
 
 ## Approach Taken:
-Created the game using object and build by adding:
+My aim was to create a simple memory game by using Rick and Morty Characters because I used to watch a few episodes a long time back. Looked back at the memory game we did in class and also did some research on how others did their memory game. 
+
+This game was created by using object and built on by adding:
 * Score and combo functions
-* Used HP to check of lose situation
+* Using HP for lives
 
 ## Difficulties Faced:
 * Not doing enough planning before starting the actual code
@@ -53,7 +55,7 @@ Created the game using object and build by adding:
 
 ## Known Issues:
 * Users are able to open more than 2 images if they click fast enough
-* Hint will minus 10 HP if user starts another level
+* Hint will minus 10 HP if user starts another level and will continue to work after winning the game
 
 ## Further Improvements:
 * Fix opening more than 2 images
