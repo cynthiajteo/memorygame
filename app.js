@@ -105,7 +105,7 @@ $(() => {
             }
         },
 
-        // display all images for 2 seconds
+        // display all images for 2 seconds - for hint
         showAll() {
             $('.card-unmatched').css('opacity', 1);
             setTimeout(function () {
@@ -116,9 +116,18 @@ $(() => {
             // console.log(app.startHP);
         },
 
+        // display all images at the start of game
+        firstShow() {
+            $('.card-unmatched').css('opacity', 1);
+            setTimeout(function () {
+                $('.card-unmatched').css('opacity', 0);
+            }, 2000);
+        },
+
         // shuffle and assign images
         assignImgs() {
             let id = '1,2,3,4,5,6,7,8,9,10';
+
             let promiseData = $.ajax({
                 url: 'https://rickandmortyapi.com/api/character/' + id,
                 type: 'GET',
@@ -144,7 +153,7 @@ $(() => {
                         }).addClass('card-unmatched'),
                     );
                 }
-
+                this.firstShow();
                 this.checkMatch();
             });
         },
@@ -167,8 +176,8 @@ $(() => {
                 }
                 if ($('.selected').length === 2) {
                     // console.log('second url is: ', e.target.src);
-                    $('.card-unmatched').unbind('click');
-                    $('.selected').unbind('click');
+                    // $('.card-unmatched').unbind('click');
+                    // $('.selected').unbind('click');
                     if (e.target.src === firstUrl) {
                         // console.log(`it's a match`);
                         firstUrl = '';
