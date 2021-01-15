@@ -9,6 +9,7 @@ $(() => {
     const $modal = $('#modal');
     const $closeBtn = $('#close');
     const $hintBtn = $('#hint');
+    const $loseModal = $('#loseModal');
 
     const openModal = () => {
         $modal.css('display', 'block');
@@ -16,6 +17,10 @@ $(() => {
 
     const closeModal = () => {
         $modal.css('display', 'none');
+    };
+
+    const loseModal = () => {
+        $loseModal.css('display', 'block');
     };
 
     $openBtn.on('click', openModal);
@@ -30,31 +35,32 @@ $(() => {
         startCombo: 0,
         startHP: 100,
 
-        startEasyGame() {
+        startGame() {
             $('.container').empty();
-            themeSong();
+            app.resetGame();
             app.playerName();
             app.displayStats();
-            app.assignImgs();
             $hintBtn.on('click', app.showAll);
+            themeSong();
         },
 
-        startMediumGame() {
-            $('.container').empty();
-            themeSong();
-            app.playerName();
-            app.displayStats();
-            app.assignImgs();
-            $hintBtn.on('click', app.showAll);
+        easyGame() {
+            app.startGame();
+            app.assignEasyImgs();
         },
 
-        startHardGame() {
-            $('.container').empty();
-            themeSong();
-            app.playerName();
-            app.displayStats();
-            app.assignImgs();
-            $hintBtn.on('click', app.showAll);
+        mediumGame() {
+            app.startGame();
+            app.assignMedImgs();
+        },
+
+        hardGame() {
+            app.startGame();
+            app.assignMedImgs();
+        },
+
+        resetGame() {
+            (this.startScore = 0), (this.startCombo = 0), (this.startHP = 100);
         },
 
         displayStats() {
@@ -115,13 +121,15 @@ $(() => {
 
         // display all images for 2 seconds - for hint
         showAll() {
-            $('.card-unmatched').css('opacity', 1);
-            setTimeout(function () {
-                $('.card-unmatched').css('opacity', 0);
-            }, 2000);
-            app.startHP -= 5;
-            $('#hp').html('HP: ' + app.startHP);
-            // console.log(app.startHP);
+            if (app.startHP > 0) {
+                $('.card-unmatched').css('opacity', 1);
+                setTimeout(function () {
+                    $('.card-unmatched').css('opacity', 0);
+                }, 2000);
+                app.startHP -= 5;
+                $('#hp').html('HP: ' + app.startHP);
+                // console.log(app.startHP);
+            } else app.checkLose();
         },
 
         // display all images at the start of game
@@ -133,7 +141,7 @@ $(() => {
         },
 
         // shuffle and assign images
-        assignImgs() {
+        assignHardImgs() {
             let id = '1,2,3,4,5,6,7,8,9,10';
 
             let promiseData = $.ajax({
@@ -166,13 +174,77 @@ $(() => {
             });
         },
 
+        assignMedImgs() {
+            let id = '21,15,16,17,18,20';
+
+            let promiseData = $.ajax({
+                url: 'https://rickandmortyapi.com/api/character/' + id,
+                type: 'GET',
+                data: {
+                    //   $limit: 10,
+                },
+            });
+            promiseData.then((data) => {
+                let imageUrlArr = [];
+                for (let j = 0; j < 6; j++) {
+                    imageUrlArr.push(data[j].image);
+                    imageUrlArr.push(data[j].image);
+                }
+                let shuffledArray = this.shuffle(imageUrlArr);
+                // console.log(shuffledArray);
+                for (let k = 0; k < shuffledArray.length; k++) {
+                    let $div = $('<div>').addClass('card-back');
+                    $('.container').append($div);
+                    $div.append(
+                        $('<img>', {
+                            id: `image-${k + 1}`,
+                            src: shuffledArray[k],
+                        }).addClass('card-unmatched'),
+                    );
+                }
+                this.firstShow();
+                this.checkMatch();
+            });
+        },
+
+        assignEasyImgs() {
+            let id = '11,12,14';
+
+            let promiseData = $.ajax({
+                url: 'https://rickandmortyapi.com/api/character/' + id,
+                type: 'GET',
+                data: {
+                    //   $limit: 10,
+                },
+            });
+            promiseData.then((data) => {
+                let imageUrlArr = [];
+                for (let j = 0; j < 3; j++) {
+                    imageUrlArr.push(data[j].image);
+                    imageUrlArr.push(data[j].image);
+                }
+                let shuffledArray = this.shuffle(imageUrlArr);
+                // console.log(shuffledArray);
+                for (let k = 0; k < shuffledArray.length; k++) {
+                    let $div = $('<div>').addClass('card-back');
+                    $('.container').append($div);
+                    $div.append(
+                        $('<img>', {
+                            id: `image-${k + 1}`,
+                            src: shuffledArray[k],
+                        }).addClass('card-unmatched'),
+                    );
+                }
+                this.firstShow();
+                this.checkMatch();
+            });
+        },
+
         // check match - need to test after appending image to divs
         checkMatch() {
             let firstUrl;
-            // let clickCount = 0;
+
             $('.card-unmatched').on('click', (e) => {
-                // clickCount++;
-                // console.log(clickCount);
                 $(e.target).css('opacity', 1);
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
@@ -182,10 +254,7 @@ $(() => {
                     // console.log('first url is: ', firstUrl);
                 }
                 if ($('.selected').length === 2) {
-                    // clickCount = 0;
                     // console.log('second url is: ', e.target.src);
-                    // $('.card-unmatched').unbind('click');
-                    // $('.selected').unbind('click');
                     if (e.target.src === firstUrl) {
                         // console.log(`it's a match`);
                         firstUrl = '';
@@ -213,7 +282,6 @@ $(() => {
                                 .removeClass('selected')
                                 .css('opacity', 0);
                         }, 1000);
-                        // clickCount = 0;
 
                         this.checkLose();
                         this.resetCombo();
@@ -241,12 +309,13 @@ $(() => {
 
     // start easy game
     $easyBtn = $('#easy-btn');
-    $easyBtn.on('click', app.startEasyGame);
+    $easyBtn.on('click', app.easyGame);
 
     // start medium game
     $mediumBtn = $('#medium-btn');
-    $mediumBtn.on('click', app.startMediumGame);
+    $mediumBtn.on('click', app.mediumGame);
+
     // start hard game
     $hardBtn = $('#hard-btn');
-    $hardBtn.on('click', app.startHardGame);
+    $hardBtn.on('click', app.hardGame);
 });
