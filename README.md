@@ -57,6 +57,23 @@ This game was created by using object and built on by adding:
 * Users are able to open more than 2 images if they click fast enough
 * Hint will minus 10 HP if user starts another level and will continue to work after winning the game
 
+## Screenshots:
+* Welcome Page
+![Welcome Page](/img/Welcome Modal.png)
+
+* Scoring System
+![Scoring System](/img/Scoring System Modal.png)
+
+* Main Page with levels to choose
+![Main Page](/img/Main Page.png)
+
+* Easy Mode
+![Easy Mode](/img/Easy Mode.png)
+
+* Hint - show all images
+![Hint](/img/Hint - show all images.png)
+
+
 ## Further Improvements:
 * Fix opening more than 2 images
 * Fix hint function
