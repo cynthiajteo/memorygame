@@ -101,7 +101,7 @@ header {
 
 /* modal */
 #modal,
-#loseModal {
+#scoring {
     display: none;
     background-color: rgb(255, 255, 255);
     position: fixed;
@@ -115,7 +115,7 @@ header {
 }
 
 #modal-textbox,
-#loseModal {
+#score-system {
     background-color: white;
     /* height: 300px; */
     width: 550px;
@@ -138,4 +138,7 @@ header {
     text-align: center;
     border-radius: 10px;
     font-family: 'Kufam', cursive;
+}
+#scoreBtn {
+    width: 150px;
 }

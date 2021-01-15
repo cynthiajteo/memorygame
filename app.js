@@ -9,6 +9,9 @@ $(() => {
     const $modal = $('#modal');
     const $closeBtn = $('#close');
     const $hintBtn = $('#hint');
+    const $scoreBtn = $('#scoreBtn');
+    const $scoring = $('#scoring');
+    const $closeScoring = $('#closeScore');
 
     const openModal = () => {
         $modal.css('display', 'block');
@@ -18,8 +21,18 @@ $(() => {
         $modal.css('display', 'none');
     };
 
+    const openScoreBtn = () => {
+        $scoring.css('display', 'block');
+    };
+
+    const closeScoreBtn = () => {
+        $scoring.css('display', 'none');
+    };
+
     $openBtn.on('click', openModal);
     $closeBtn.on('click', closeModal);
+    $scoreBtn.on('click', openScoreBtn);
+    $closeScoring.on('click', closeScoreBtn);
 
     setTimeout(openModal, 0);
 

@@ -16,6 +16,9 @@
             <h1>Memory Game</h1>
             <div class="info-btn">
                 <button class="modal-buttons" id="openModal">About</button>
+                <button class="modal-buttons" id="scoreBtn">
+                    Scoring System
+                </button>
             </div>
 
             <audio loop id="theme-song">
@@ -52,6 +55,27 @@
 
                     <div id="modal-footer">
                         <button class="modal-buttons" id="close" href="#">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="scoring">
+                <div id="score-system">
+                    <p>
+                        Combo System: * Increases after every consecutive match
+                        * Resets to 0 if miss a match and - 5 HP
+                    </p>
+
+                    <p>
+                        Score System: * Combo: 0 - add 10 points * Combo: 1 -
+                        add 10 points * Combo: 2 - add 20 points + 10 HP *
+                        Combo: 3 & above - add 30 points + 10 HP
+                    </p>
+
+                    <div id="modal-footer">
+                        <button class="modal-buttons" id="closeScore" href="#">
                             Close
                         </button>
                     </div>
