@@ -23,8 +23,8 @@ h1 {
     margin: 0 auto;
     display: block;
     border-style: solid;
-    width: 850px;
-    height: 880px;
+    /* width: 1080px; */
+    height: 670px;
 }
 
 header {
@@ -59,18 +59,19 @@ header {
     width: 100%;
     text-align: center;
     font-family: 'Syne Tactile', cursive;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .stats {
-    margin: 30px;
+    /* margin: 30px; */
     width: 100%;
 }
 
 /* level buttons */
 .btn-div {
     text-align: center;
-    padding-bottom: 30px;
+    /* padding-bottom: 30px; */
+    padding-top: 5px;
     width: 100%;
 }
 
@@ -79,9 +80,9 @@ header {
 }
 
 .lvl-btn {
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
-    margin: 15px;
+    margin: 10px;
     background-color: lightblue;
     font-size: 25px;
     font-weight: bolder;

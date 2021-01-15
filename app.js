@@ -86,7 +86,7 @@ $(() => {
                 // console.log(this.startScore);
             } else if (this.startCombo > 2) {
                 this.startScore += this.addScore * 3;
-                this.startHP += 5;
+                this.startHP += 10;
                 $('#score').html('Score: ' + this.startScore);
                 $('#hp').html('HP: ' + this.startHP);
                 // console.log(this.startScore);
