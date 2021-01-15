@@ -98,20 +98,12 @@ $(() => {
         increaseScore() {
             if (this.startCombo < 2) {
                 this.startScore = this.startScore + this.addScore;
-                $('#score').html('Score: ' + this.startScore);
-                // console.log(this.startScore);
             } else if (this.startCombo === 2) {
                 this.startScore += this.addScore * 2;
                 this.startHP += 10;
-                $('#score').html('Score: ' + this.startScore);
-                $('#hp').html('HP: ' + this.startHP);
-                // console.log(this.startScore);
             } else if (this.startCombo > 2) {
                 this.startScore += this.addScore * 3;
                 this.startHP += 10;
-                $('#score').html('Score: ' + this.startScore);
-                $('#hp').html('HP: ' + this.startHP);
-                // console.log(this.startScore);
             }
         },
 
@@ -136,7 +128,6 @@ $(() => {
                 }, 2000);
                 app.startHP -= 5;
                 $('#hp').html('HP: ' + app.startHP);
-                // console.log(app.startHP);
             } else app.checkLose();
         },
 
@@ -150,8 +141,7 @@ $(() => {
 
         // shuffle and assign images
         assignHardImgs() {
-            let id = '1,2,3,4,5,6,7,8,9,10';
-
+            let id = '1,2,3,4,5,6,7,8,9,10,22,23';
             let promiseData = $.ajax({
                 url: 'https://rickandmortyapi.com/api/character/' + id,
                 type: 'GET',
@@ -161,7 +151,7 @@ $(() => {
             });
             promiseData.then((data) => {
                 let imageUrlArr = [];
-                for (let j = 0; j < 10; j++) {
+                for (let j = 0; j < 12; j++) {
                     imageUrlArr.push(data[j].image);
                     imageUrlArr.push(data[j].image);
                 }
@@ -183,7 +173,7 @@ $(() => {
         },
 
         assignMedImgs() {
-            let id = '21,15,16,17,18,20';
+            let id = '15,16,17,18,20,21,24,25';
 
             let promiseData = $.ajax({
                 url: 'https://rickandmortyapi.com/api/character/' + id,
@@ -194,7 +184,7 @@ $(() => {
             });
             promiseData.then((data) => {
                 let imageUrlArr = [];
-                for (let j = 0; j < 6; j++) {
+                for (let j = 0; j < 8; j++) {
                     imageUrlArr.push(data[j].image);
                     imageUrlArr.push(data[j].image);
                 }
@@ -216,7 +206,7 @@ $(() => {
         },
 
         assignEasyImgs() {
-            let id = '11,12,14';
+            let id = '11,12,14,26,27';
 
             let promiseData = $.ajax({
                 url: 'https://rickandmortyapi.com/api/character/' + id,
@@ -227,7 +217,7 @@ $(() => {
             });
             promiseData.then((data) => {
                 let imageUrlArr = [];
-                for (let j = 0; j < 3; j++) {
+                for (let j = 0; j < 5; j++) {
                     imageUrlArr.push(data[j].image);
                     imageUrlArr.push(data[j].image);
                 }
@@ -276,7 +266,7 @@ $(() => {
                                 .toggleClass('card-back')
                                 .parent()
                                 .css('opacity', 0);
-                        }, 400);
+                        }, 500);
 
                         this.startCombo++;
                         this.increaseScore();
@@ -289,7 +279,7 @@ $(() => {
                                 .addClass('card-unmatched')
                                 .removeClass('selected')
                                 .css('opacity', 0);
-                        }, 1000);
+                        }, 400);
 
                         this.checkLose();
                         this.resetCombo();
