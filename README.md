@@ -58,7 +58,7 @@ This game was created by using object and built on by adding:
 * Hint will minus 10 HP if user starts another level and will continue to work after winning the game
 
 ## Screenshots:
-* Welcome Page
+* Welcome Page\
 ![Welcome Page](img/welcome.png)
 
 * Scoring System
