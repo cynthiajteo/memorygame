@@ -26,6 +26,7 @@
 ### What habits did I have during this unit that I can improve on?
 - Refactor 
 - Be creative in finding solutions
+- Commit more often
 
 ### How is the overall level of the course during this unit? (instruction, course materials, etc.)
 - So far it's ok, but I feel I need to do more reading/testing/learning on my part to understand better
