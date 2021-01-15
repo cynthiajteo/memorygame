@@ -31,7 +31,7 @@ https://cynthiajteo.github.io/memorygame/index.html
 Use your mouse to click on the images to form a pair. You win by matching all the pairs before your HP runs out.
 
 ## API Used:
-https://rickandmortyapi.com/
+https://rickandmortyapi.com/ 
 Used to generate images for playing cards
 
 ## Technologies Used:
