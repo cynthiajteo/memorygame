@@ -51,7 +51,7 @@ $(() => {
 
         hardGame() {
             app.startGame();
-            app.assignMedImgs();
+            app.assignHardImgs();
         },
 
         resetGame() {
