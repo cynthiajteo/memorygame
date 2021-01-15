@@ -23,10 +23,11 @@ Combo System:
 https://cynthiajteo.github.io/memorygame/index.html
 
 ## Game Tutorial:
-Use your mouse to click on the images to form a pair. You win by matching all the pairs.
+Use your mouse to click on the images to form a pair. You win by matching all the pairs before your HP runs out.
 
 ## API Used:
 https://rickandmortyapi.com/
+Used to generate images for playing cards
 
 ## Technologies Used:
 * HTML 5
@@ -40,7 +41,17 @@ Created the game using object and build by adding:
 * Score and combo functions
 * Used HP to check of lose situation
 
+
+## Difficulties Faced:
+* Not doing enough planning before starting the actual code
+* Mostly game logic lacked planning
+* Getting the images out from API then using for the game
+
+## Known Issues:
+* Users are able to open more than 2 images if they click fast enough
+
 ## Further Improvements:
 * Fix opening more than 2 images
 * Add animation for flipping cards
 * Adding and storing high score board
+* Adding timer for users to beat their personal best

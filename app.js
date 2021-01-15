@@ -1,12 +1,15 @@
 $(() => {
+    const themeSong = () => {
+        $('#theme-song').prop('volume', '0.3');
+        $('#theme-song').trigger('play');
+    };
+
     // modals
-    // Grabbing Elements
     const $openBtn = $('#openModal');
     const $modal = $('#modal');
     const $closeBtn = $('#close');
     const $hintBtn = $('#hint');
 
-    // Event Handlers
     const openModal = () => {
         $modal.css('display', 'block');
     };
@@ -15,7 +18,6 @@ $(() => {
         $modal.css('display', 'none');
     };
 
-    // Event Listeners
     $openBtn.on('click', openModal);
     $closeBtn.on('click', closeModal);
 
@@ -30,6 +32,7 @@ $(() => {
 
         startEasyGame() {
             $('.container').empty();
+            themeSong();
             app.playerName();
             app.displayStats();
             app.assignImgs();
@@ -38,6 +41,7 @@ $(() => {
 
         startMediumGame() {
             $('.container').empty();
+            themeSong();
             app.playerName();
             app.displayStats();
             app.assignImgs();
@@ -46,6 +50,7 @@ $(() => {
 
         startHardGame() {
             $('.container').empty();
+            themeSong();
             app.playerName();
             app.displayStats();
             app.assignImgs();
@@ -124,7 +129,7 @@ $(() => {
             $('.card-unmatched').css('opacity', 1);
             setTimeout(function () {
                 $('.card-unmatched').css('opacity', 0);
-            }, 2000);
+            }, 1000);
         },
 
         // shuffle and assign images
@@ -156,8 +161,7 @@ $(() => {
                         }).addClass('card-unmatched'),
                     );
                 }
-                // this.firstShow();
-
+                this.firstShow();
                 this.checkMatch();
             });
         },
@@ -165,10 +169,10 @@ $(() => {
         // check match - need to test after appending image to divs
         checkMatch() {
             let firstUrl;
-            let clickCount = 0;
+            // let clickCount = 0;
             $('.card-unmatched').on('click', (e) => {
-                clickCount++;
-                console.log(clickCount);
+                // clickCount++;
+                // console.log(clickCount);
                 $(e.target).css('opacity', 1);
                 $(e.target).removeClass('card-unmatched');
                 $(e.target).addClass('selected');
@@ -178,7 +182,7 @@ $(() => {
                     // console.log('first url is: ', firstUrl);
                 }
                 if ($('.selected').length === 2) {
-                    clickCount = 0;
+                    // clickCount = 0;
                     // console.log('second url is: ', e.target.src);
                     // $('.card-unmatched').unbind('click');
                     // $('.selected').unbind('click');
@@ -195,7 +199,7 @@ $(() => {
                                 .toggleClass('card-back')
                                 .parent()
                                 .css('opacity', 0);
-                        }, 1000);
+                        }, 400);
 
                         this.startCombo++;
                         this.increaseScore();
@@ -209,7 +213,7 @@ $(() => {
                                 .removeClass('selected')
                                 .css('opacity', 0);
                         }, 1000);
-                        clickCount = 0;
+                        // clickCount = 0;
 
                         this.checkLose();
                         this.resetCombo();
