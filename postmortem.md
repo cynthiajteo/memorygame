@@ -12,7 +12,7 @@
 
 ## Code and Code Design
 ### What in my code and program design in the project would I do differently next time?
-- Refactor by using class
+- Refactoring
 - Tidy up my code 
 - Do multiple tests to ensure all scenarios are covered
 
