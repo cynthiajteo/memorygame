@@ -33,6 +33,7 @@ $(() => {
             app.playerName();
             app.displayStats();
             app.assignImgs();
+            $hintBtn.on('click', app.showAll);
         },
 
         startMediumGame() {
@@ -40,6 +41,7 @@ $(() => {
             app.playerName();
             app.displayStats();
             app.assignImgs();
+            $hintBtn.on('click', app.showAll);
         },
 
         startHardGame() {
@@ -47,6 +49,7 @@ $(() => {
             app.playerName();
             app.displayStats();
             app.assignImgs();
+            $hintBtn.on('click', app.showAll);
         },
 
         displayStats() {
@@ -239,9 +242,6 @@ $(() => {
             }
         },
     };
-
-    // show all button
-    $hintBtn.on('click', app.showAll);
 
     // start easy game
     $easyBtn = $('#easy-btn');

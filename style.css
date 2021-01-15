@@ -22,9 +22,13 @@ h1 {
 .container {
     margin: 0 auto;
     display: block;
-    border-style: solid;
+    align-items: center;
+    justify-content: center;
+    /* border-style: solid; */
     /* width: 1080px; */
+    padding-left: 20px;
     height: 670px;
+    text-align: center;
 }
 
 header {
